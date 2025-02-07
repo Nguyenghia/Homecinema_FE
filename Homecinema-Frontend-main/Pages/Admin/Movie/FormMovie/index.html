@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div ng-include="'Components/Admin/Header/header.html'" ng-controller="headerCtrl"></div>
+    <section class="section-content">
+        <div class="container">
+          <header class="section-heading py-4">
+            <h3 class="section-title">Add Movie</h3>
+          </header>
+          <main class="row mb-5"> 
+            <form name="formtaophim" ng-submit="title.includes('Add')?addMovie(movie):editMovie(movie)" class="col-lg-6" novalidate autocomplete="off">
+              <div ng-if="flagAlert_true" class="alert alert-success mb-3" role="alert">
+                  {{title.includes('Add')?"Add":"Update"}} movie successfully
+              </div>
+              <div ng-if="flagAlert_false" class="alert alert-danger mb-3" role="alert">
+                  Movie already exists
+              </div>
+              <div ng-if="flagAlertNotExits_true" class="alert alert-danger mb-3" role="alert">
+                  No movie found
+              </div>
+              <div class="mb-3">
+                <label for="movie-id" class="form-label">ID Movie <span class="text-danger">*</span></label>
+                <input type="text"
+                        class="form-control" ng-class="{'is-valid': formtaophim.idPhim.$valid, 'is-invalid': formtaophim.idPhim.$touched && formtaophim.idPhim.$invalid}"
+                        id="movie-id"
+                        name="idPhim"
+                        ng-model="movie.idPhim"
+                        required
+                        ng-disabled="title.includes('Edit')">
+              </div>
+              <div class="mb-3">
+                <label for="movie-name" class="form-label">Name Movie <span class="text-danger">*</span></label>
+                <input type="text"
+                       class="form-control"
+                       id="movie-name"
+                       name="tenPhim"
+                       ng-class="{'is-valid': formtaophim.tenPhim.$valid, 'is-invalid': formtaophim.tenPhim.$touched && formtaophim.tenPhim.$invalid}"
+                       ng-model="movie.tenPhim"
+                       required>
+              </div>
+              <div class="mb-3">
+                <label for="movie-image" class="form-label">Image Movie <span class="text-danger">*</span></label>
+                <input type="text"
+                       class="form-control"
+                       id="movie-image"
+                       name="hinhPhim"
+                       ng-class="{'is-valid': formtaophim.hinhPhim.$valid, 'is-invalid': formtaophim.hinhPhim.$touched && formtaophim.hinhPhim.$invalid}"
+                       ng-model="movie.hinhPhim"
+                       required>
+              </div>
+              <div class="mb-3">
+                <label for="movie-moTa" class="form-label">Description <span class="text-danger">*</span></label>
+                <textarea type="text"
+                       class="form-control"
+                       id="movie-moTa"
+                       name="moTa"
+                       ng-model="movie.moTa"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="movie-tacGia" class="form-label">Author <span class="text-danger">*</span></label>
+                <input type="text"
+                       class="form-control"
+                       id="movie-tacGia"
+                       name="tacGia"
+                       ng-class="{'is-valid': formtaophim.tacGia.$valid, 'is-invalid': formtaophim.tacGia.$touched && formtaophim.tacGia.$invalid}"
+                       ng-model="movie.tacGia"
+                       required>
+              </div>
+              <div class="mb-3">
+                <label for="movie-status" class="form-label">Status <span class="text-danger">*</span></label>
+                <select class="form-select"
+                        id="movie-status"
+                        ng-class="{'is-valid': formtaophim.trangThai.$valid, 'is-invalid': formtaophim.trangThai.$touched && formtaophim.trangThai.$invalid}"
+                        name="trangThai"
+                        ng-model="movie.trangThai"
+                        required>
+                  <option value="" disabled>
+                    Choose Status...
+                  </option>
+                  <option value="true">
+                    ON
+                  </option>
+                  <option value="false">
+                    OFF
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="movie-listIdLoai" class="form-label">Category movie <span class="text-danger">*</span></label>
+                <select class="form-select" multiple
+                        id="movie-listIdLoai"
+                        ng-class="{'is-valid': formtaophim.listIdLoai.$valid, 'is-invalid': formtaophim.listIdLoai.$touched && formtaophim.listIdLoai.$invalid}"
+                        name="listIdLoai"
+                        ng-model="movie.listIdLoai"
+                        required>
+                  <option value="" disabled>
+                   Choose category
+                  </option>
+                  <option ng-repeat="category in listCategory track by $index" ng-value="category.idLoai" ng-bind="category.tenLoai"></option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <input type="hidden"
+                       class="form-control"
+                       id="movie-ngayTao"
+                       name="ngayTao"
+                       ng-model="movie.ngayTao ">
+              </div>
+              <button ng-if="title.includes('Add')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaophim.$valid">
+                Add
+              </button>
+              <button ng-if="title.includes('Edit')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaophim.$valid">
+                Update
+              </button>
+              <button type="reset"
+                      class="btn btn-warning me-2 mb-3"
+                      ng-click="resetForm()">
+                Default
+              </button>
+            </form>
+            <div class="col-lg-6">
+                <img style="width: 100%;" ng-src="{{movie.hinhPhim}}" alt="">
+            </div>
+          </main>
+        </div>
+      </section>
+    <div ng-include="'Components/Admin/Footer/footer.html'"></div>
+</body>
+</html>

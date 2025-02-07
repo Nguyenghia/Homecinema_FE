@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- Nav -->
+<div ng-include="'Components/Header/header.html'" ng-controller="header_userCtrl"></div>
+<div class="row">
+	<div ng-if="listPhimMoi.length > 0" class="col">
+		<div class="carousel">
+            <div class="carousel-cell" ng-repeat="item in listPhimMoi track by $index">
+				<a href="#!movie/{{item.idPhim}}" class="stretched-link position-relative">
+					<img
+						ng-src="{{item.hinhPhim}}"
+						class="carousel-cell-image" />
+					<div class="information-carousel position-absolute start-0 text-white d-flex flex-column">
+						<span class="fw-light"></span>
+						<span class="h4" ng-bind="item.tenPhim"></span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Tập mới nhất -->
+<div class="mt-3">
+	<span class="h4 text-decoration-none title-text text-uppercase fw-medium">Latest episode</span>
+	<div class="row row-cols-2 row-cols-md-4 pb-3 mt-1 g-2">
+        <div class="col" ng-repeat="episode in listTapPhimMoi track by $index">
+            <div
+                class="card-episode-new card text-bg-dark position-relative overflow-hidden">
+                <img ng-src="{{episode.hinhTapphim}}" class="card-img card-content-img" />
+                <a href="#!movie/watch/{{episode.idTapphim}}"
+                    class="card-content-link stretched-link text-decoration-none">
+                    <div class="card-content d-flex flex-column position-absolute">
+                        <span class="text-white card-content-title mx-2 fw-bold text-truncate" ng-bind="episode.phim.tenPhim"></span>
+                        <div class="d-flex justify-content-between py-1 mx-2">
+                            <span class="text-white card-content-text fw-light text-truncate" ng-bind="episode.tenTapphim"></span>
+                            <span class="text-white card-content-text">
+								<small class="fw-light text-truncate">{{episode.luotXem | number}} lượt xem</small>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+	</div>
+</div>
+
+<div class="mt-3">
+	<span class="h4 text-decoration-none title-text text-uppercase fw-medium">Movies You Might Like</span>
+	<div class="row row-cols-2 row-cols-md-4 pb-5 mt-1 gx-1">
+		<div class="col" ng-repeat="item in listPhimRandom track by $index">
+			<div class="card-episode-new card text-bg-dark position-relative overflow-hidden">
+				<img ng-src="{{item.hinhPhim}}"
+					class="card-img card-content-img" />
+				<a href="#!movie/{{item.idPhim}}" class="card-content-link stretched-link text-decoration-none">
+					<div class="card-content d-flex flex-column position-absolute">
+						<span class="text-white card-content-title mx-2 fw-bold text-truncate" ng-bind="item.tenPhim"></span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

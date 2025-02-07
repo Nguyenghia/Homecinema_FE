@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- Nav -->
+<div ng-include="'Components/Header/header.html'" ng-controller="header_userCtrl"></div>
+<div class="row mt-3">
+	<div class="col">
+        <div class="card mb-3 border-0">
+            <div class="row g-0">
+                <div class="col-md-4 d-md-block mb-3">
+                    <img
+                        style="width: 100%;height: 350px;"
+                        ng-src="{{phim.hinhPhim}}"
+                        class="img-fluid rounded-start">
+                </div>
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center ms-0 ms-md-3">
+                        <h6 class="me-2">Category:</h6>
+                        <a href="#!search/category/{{item.idLoai}}" class="text-decoration-none theloai text-light p-1 h6 text-capitalize mx-2 rounded-2"
+                         ng-repeat="item in listCategories track by $index" ng-bind="item.tenLoai"></a>
+                    </div>
+                    <div class="card-body ps-0 ps-md-3">
+                        <h5 class="card-title" ng-bind="phim.tenPhim">Card title</h5>
+                        <p class="card-text" ng-bind="phim.moTa"></p>
+                    </div>
+                    <div class="ps-0 ps-md-3 ">
+                        <a ng-if="idTapPhim != 0" href="#!movie/watch/{{idTapPhim}}" class="btn btn-danger">Watch movie</a>
+                        <a ng-if="idTapPhim == 0" class="btn btn-danger disabled">Coming soon</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

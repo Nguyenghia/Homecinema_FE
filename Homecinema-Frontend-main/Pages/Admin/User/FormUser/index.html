@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div ng-include="'Components/Admin/Header/header.html'" ng-controller="headerCtrl"></div>
+    <section class="section-content">
+        <div class="container">
+          <header class="section-heading py-4">
+            <h3 class="section-title">Add User</h3>
+          </header> <!-- section-heading.// -->
+          <main class="row mb-5"> 
+            <form name="formtaotaikhoan" ng-submit="title.includes('Add')?addUser(user):editUser(user)" class="col-lg-6" novalidate autocomplete="off">
+              <div ng-if="flagAlert_true" class="alert alert-success mb-3" role="alert">
+                  {{title.includes('Add')?"Added":"Update"}} User  successfully
+              </div>
+              <div ng-if="flagAlert_false" class="alert alert-danger mb-3" role="alert">
+                This Gmail already exists
+              </div>
+              <div ng-if="flagAlertNotExits_true" class="alert alert-danger mb-3" role="alert">
+                Account not found
+              </div>
+              <div class="mb-3">
+                <label for="user-email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        class="form-control" ng-class="{'is-valid': formtaotaikhoan.email.$valid, 'is-invalid': formtaotaikhoan.email.$touched && formtaotaikhoan.email.$invalid}"
+                        id="user-email"
+                        name="email"
+                        ng-model="user.email"
+                        required>
+              </div>
+              <div class="mb-3">
+                <label for="user-password" class="form-label">Password <span class="text-danger">*</span></label>
+                <input type="password"
+                       class="form-control"
+                       id="user-password"
+                       name="pass"
+                       ng-class="{'is-valid': formtaotaikhoan.pass.$valid, 'is-invalid': formtaotaikhoan.pass.$touched && formtaotaikhoan.pass.$invalid}"
+                       ng-model="user.pass"
+                       required>
+              </div>
+           
+              <div class="mb-3">
+                <label for="user-role" class="form-label">Role <span class="text-danger">*</span></label>
+                <select class="form-select"
+                        id="user-role"
+                        ng-class="{'is-valid': formtaotaikhoan.vaiTro.$valid, 'is-invalid': formtaotaikhoan.vaiTro.$touched && formtaotaikhoan.vaiTro.$invalid}"
+                        name="vaiTro"
+                        ng-model="user.vaiTro"
+                        required>
+                  <option value="" disabled>
+                    Select a permission...
+                  </option>
+                  <option value="true">
+                    Administrator
+                  </option>
+                  <option value="false">
+                    User
+                  </option>
+                </select>
+              </div>
+              <button ng-if="title.includes('Add')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotaikhoan.$valid">
+                Add
+              </button>
+              <button ng-if="title.includes('Edit')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotaikhoan.$valid">
+                Update
+              </button>
+              <button type="reset"
+                      class="btn btn-warning me-2 mb-3"
+                      ng-click="resetForm()">
+                Default
+              </button>
+            </form>
+          </main>
+        </div>
+      </section>
+    <div ng-include="'Components/Admin/Footer/footer.html'"></div>
+</body>
+</html>

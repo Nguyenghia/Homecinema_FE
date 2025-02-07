@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Thanh điều hướng trang web -->
+	<link rel="stylesheet" href="Components/Header/header.css">
+</head>
+<body>
+
+
+
+	<nav class="navbar navbar-expand-lg" >
+		<button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvas-menu">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="#!home">
+			<img src="Asset/Image/Logo.png" alt="Logo" />
+		</a>
+		<div class="d-lg-block d-none navbar-collapse justify-content-around">
+			<ul class="navbar-nav">
+				<li class="nav-item" ng-repeat="item in listCategories track by $index">
+					<a class="navbar-item nav-link border rounded-pill px-3 py-2 mx-2" href="#!search/category/{{item.idLoai}}" ng-bind="item.tenLoai"></a>
+				</li>
+				<li ng-show="detailAccount.vaiTro" class="nav-item">
+					<a class="navbar-item nav-link border rounded-pill px-3 py-2 mx-2" href="#!admin/statistical">
+						Manage</a>
+				</li>
+			</ul>
+			<div class="d-none d-lg-block">
+				<form class="position-relative" ng-submit="search(value)">
+					<input type="text" class="form-search form-control" ng-model="value"/>
+					<label for="tim-kiem-1" class="icon-search position-absolute"><i class="bi bi-search"></i></label>
+					<button class="d-none" id="tim-kiem-1" type="submit"></button>
+				</form>
+			</div>
+		</div>
+		<span class="d-block me-lg-5 me-md-3 me-2" type="button" data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvas-avatar">
+			<img class="navbar-img-avatar" src="Asset/Image/Avatar.png" alt="ảnh đại diện" />
+		</span>
+	</nav>
+	<!-- Offcanvas avatar -->
+	<div ng-include="'Components/Offcanvas/OffcanvasAvatar.html'" ng-controller="OffcanvasAvatarCtrl"></div>
+	<!-- Offcanvas Menu -->
+	<div ng-include="'Components/Offcanvas/OffcanvasMenu.html'"></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- Nav -->
+<div ng-include="'Components/Header/header.html'" ng-controller="header_userCtrl"></div>
+<!-- Tập mới nhất -->
+<div class="mt-3">
+	<span href="#" class="h4 text-decoration-none title-text text-uppercase fw-medium">Search: {{value}}</span>
+	<div class="row row-cols-2 row-cols-md-4 pb-3 mt-1 g-2">
+        <div class="col" ng-repeat="movie in listMovie track by $index">
+            <div
+                class="card-episode-new card text-bg-dark position-relative overflow-hidden">
+                <img ng-src="{{movie.hinhPhim}}" class="card-img card-content-img" />
+                <a href="#!movie/{{movie.idPhim}}"
+                    class="card-content-link stretched-link text-decoration-none">
+                    <div class="card-content d-flex flex-column position-absolute">
+                        <span class="text-white card-content-title mx-2 fw-bold text-truncate" ng-bind="movie.tenPhim"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+	</div>
+</div>
+
+
+</body>
+</html>

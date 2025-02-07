@@ -1,0 +1,125 @@
+<div class="offcanvas offcanvas-end ${showOffcanvas }" data-bs-backdrop="false"
+	data-bs-scroll="true" tabindex="-1" id="offcanvas-avatar">
+	<div ng-class="{'d-none': MyAccount != null}">
+		<div class="offcanvas-header pb-0">
+			<div>
+				<button type="button" id="btn-close-login" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				<span class="fw-light mt-2 d-block">Hello guest!</span>
+			</div>
+			<label> <img class="navbar-img-avatar m-3" style="width: 80px; height: 80px;"
+				src="Asset/Image/Avatar.png" alt="ảnh đại diện" />
+			</label>
+		</div>
+		<div class="offcanvas-body card border-0 p-0">
+			<div class="card-header">
+				<ul class="nav nav-pills card-header-pills">
+					<li class="nav-item">
+						<a class="nav-link active" data-bs-toggle="list" href="#tab-dangnhap">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link ${activeDK }" data-bs-toggle="list" href="#tab-dangky">Register</a>
+					</li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="tab-dangnhap" tabindex="0">
+					<form class="container mt-3" name="formdangnhap" ng-submit="SignIn(user)" autocomplete="off" novalidate>
+						<div class="form-floating mb-3">
+							<input type="gmail" id="taikhoan_gmail" ng-model="user.email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+								class="form-control" placeholder="Tên tài khoản" required>
+							<label for="taikhoan_gmail">Gmail</label>
+						</div>
+						<p class="text-danger" ng-show="formdangnhap.email.$touched && formdangnhap.email.$invalid">Please re-enter Email</p>
+						<div class="input-group mb-3">
+							<div class="form-floating">
+								<input type="password" class="form-control pass" id="taikhoan_pass" ng-model="user.pass" name="pass"
+									placeholder="Password" required>
+								<label for="taikhoan_pass">Password</label>
+							</div>
+							<span class="input-group-text" ng-click="changeIconPassword()">
+								<i id="iconPass" class="bi bi-eye-slash"></i>
+							</span>
+						</div>
+						<p class="text-danger" ng-show="formdangnhap.pass.$touched && formdangnhap.pass.$invalid">Please re-enter password</p>
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="checkbox" value="" id="remember">
+							<label class="form-check-label" for="remember"> remember </label>
+						</div>
+						<p class="text-danger" ng-bind="messError"></p>
+						<div class="d-grid">
+							<span class="text-danger" id="err-dangnhap" ng-bind="errMess"></span>
+							<button class="btn btn-primary btn-login text-uppercase fw-bold"
+								ng-disabled="!formdangnhap.$valid" type="submit">Login</button>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="tab-dangky" tabindex="0">
+					<form class="container mt-3" name="formdangky" ng-submit="SignUp(new_user)" autocomplete="off" novalidate>
+						<div class="form-floating mb-3">
+							<input type="email" name="email" ng-model="new_user.email" class="form-control" id="dangky_gmail"
+								placeholder="Tên tài khoản" required>
+							<label for="dangky_gmail">Gmail</label>
+						</div>
+						<span class="text-danger" ng-show="formdangky.email.$touched && formdangky.email.$invalid">Please re-enter Email</span>
+						<div class="input-group mb-3">
+							<div class="form-floating">
+								<input type="password" class="form-control" name="pass" ng-model="new_user.pass" id="pass_register"
+									placeholder="Password" required>
+								<label for="pass_register">Password</label>
+							</div>
+							<span class="input-group-text" ng-click="changeIconPassword()">
+								<i id="iconPass_register" class="bi bi-eye-slash"></i>
+							</span>
+						</div>
+						<span class="text-danger" ng-show="formdangky.pass.$touched && formdangky.pass.$invalid">Please re-enter Password</span>
+						<div class="input-group mb-3">
+							<div class="form-floating">
+								<input type="password" class="form-control" name="passconfirm" ng-model="new_user.passconfirm" id="password_confirm"
+									placeholder="Please re-enter Password" required>
+								<label for="password_confirm">Please re-enter Password</label>
+							</div>
+						</div>
+						<span class="text-danger" ng-show="new_user.pass != new_user.passconfirm">Passwords do not match</span>
+						<div class="d-grid">
+							<button class="btn btn-primary btn-login text-uppercase fw-bold"
+								ng-disabled="!formdangky.$valid || new_user.pass != new_user.passconfirm" type="submit">Register</button>
+							<span class="text-danger" ng-bind="mess"></span>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-class="{'d-none': MyAccount == null}">
+		<div class="offcanvas-header pb-0">
+			<div>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				<span class="fw-light mt-2 d-block">Hello {{detailAccount.gmail}}!</span>
+			</div>
+			<label> <img class="navbar-img-avatar m-3" style="width: 80px; height: 80px;"
+				src="Asset/Image/Avatar.png" alt="ảnh đại diện" />
+			</label>
+		</div>
+		<div class="offcanvas-body card border-0 p-0">
+			<div class="list-group">
+				<a href="#!history" class="list-group-item list-group-item-action d-flex">
+					<i class="bi bi-clock"></i>
+					<span class="mx-2">Episodes watched</span>
+				</a>
+				<a href="#!liked" class="list-group-item list-group-item-action d-flex">
+					<i class="bi bi-heart"></i>
+					<span class="mx-2">Liked movies</span>
+				</a>
+				<a ng-show="detailAccount.vaiTro" href="#!admin/statistical" class="list-group-item list-group-item-action d-flex">
+					<i class="bi bi-film"></i>
+					<span class="mx-2">Movie Management</span>
+				</a>
+				<a class="list-group-item list-group-item-action d-flex" ng-click="logout()">
+					<i class="bi bi-box-arrow-left"></i>
+					<span class="mx-2">Logout</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

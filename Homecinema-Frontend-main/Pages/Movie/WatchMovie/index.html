@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+
+
+    <!-- Nav -->
+    <div ng-include="'Components/Header/header.html'" ng-controller="header_userCtrl"></div>
+    <div class="row">
+    <div class="col-12 col-lg-8">
+    <iframe width="100%" height="350" ng-src="{{episode.linkVideo}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    <div class="d-flex flex-column my-2">
+        <h5 class="fw-light">{{episode.tenTapPhim}}</h5>
+        <span class="mb-2">{{episode.luotXem | number}} view | {{episode.ngayTao | date: "dd/MM/yyyy"}}</span>
+        <div class="mb-2">
+            <div class="form-check form-check-inline p-0 m-0">
+                <input type="checkbox" class="btn-check" id="btn-like" ng-click="handleActionLike()">
+                <label class="btn btn-outline-danger" ng-class="{'active': flagLike}" for="btn-like"><i
+                    class="bi bi-hand-thumbs-up-fill m-1">Like</i>{{like}}</label>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card mb-3 border-0">
+            <div class=" row g-0">
+                <div class="col-md-4 mb-3 d-md-block">
+                    <img
+                    style="width: 100%;height: 300px;"
+                    ng-src="{{phim.hinhPhim}}"
+                    class="img-fluid rounded-start">
+                </div>
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center ms-0 ms-md-3">
+                        <h6 class="me-2">Category:</h6>
+                        <a href="#!search/category/{{item.idLoai}}" class="text-decoration-none theloai text-light p-1 h6 text-capitalize mx-2 rounded-2"
+                            ng-repeat="item in listCategories track by $index" ng-bind="item.tenLoai"></a>
+                    </div>
+                    <div class="card-body ps-0 ps-md-3 ">
+                        <h5 class="card-title" ng-bind="phim.tenPhim"></h5>
+                        <p class="card-text" ng-bind="phim.moTa"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-12 col-lg-4">
+    <div class="list-group list-group-flush border border-1">
+        <div class="list-group-item nav nav-pills d-flex justify-content-between">
+            <button class="btn nav-link active" data-bs-toggle="pill"
+                data-bs-target="#pills-danhsach">Episode list</button>
+            <!-- <button class="btn nav-link" data-bs-toggle="pill"
+                data-bs-target="#pills-binhluan">Bình luận</button> -->
+        </div>
+        <div class="tab-content overflow-auto" id="pills-tabContent"
+            style="height: 425px;">
+            <div class="tab-pane fade show active" id="pills-danhsach" tabindex="0">
+                <div class="px-4 py-2 d-flex justify-content-between border">
+                    <span>Total: {{listEpisode.length}} video</span>
+                    <span>Episode {{eposodeIndex}}</span>
+                </div>
+                <a href="#!movie/watch/{{item.idTapphim}}" class="mt-2 text-decoration-none" ng-class="{'pe-none': id==item.idTapphim}" ng-repeat="item in listEpisode track by $index">
+                    <div class="card border-0 mx-3">
+                        <div class="row g-0 card-episode-new p-0">
+                            <div class="col-4 overflow-hidden">
+                                <img ng-src="{{item.hinhTapphim}}" class="w-100 rounded-start card-content-img" style="object-fit: cover">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body p-0 ms-3" ng-class="{'text-danger': id==item.idTapphim}">
+                                    <h6 ng-bind="item.tenTapphim" class="td-text"></h6>
+                                    <small ng-bind="item.ngayTao | date: 'dd/MM/yyyy'"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="tab-pane fade" id="pills-binhluan" tabindex="0">
+                <div class="px-4 py-2 border">
+                    <form action="">
+                        <input type="text" class="form-control">
+                        <button class="mt-3 btn btn-danger">gửi</button>
+                    </form>
+                </div>
+                <div class="mt-2">
+                    <div class="card border-0 mx-3 border-0 border-bottom">
+                        <div class="row g-0 card-episode-new p-0">
+                            <div class="col-2 d-grid" style="align-items: center;">
+                                <img
+                                    src="https://s199.imacdn.com/vg/2023/04/03/4e9bb10a1ac2cefa_e52f66a56a44eaf9_11753916805198194118684.jpg"
+                                    class="w-100 rounded-start" style="object-fit: contain">
+                            </div>
+                            <div class="col-10 d-flex justify-content-between">
+                                <div class="card-body p-0 ms-3 d-flex flex-column">
+                                    <span class="h6 fw-bold">Hữu Hoàng</span>
+                                    <span class="m-0">gì vậy ba</span>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">3 tiếng trước</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+</body>
+</html>

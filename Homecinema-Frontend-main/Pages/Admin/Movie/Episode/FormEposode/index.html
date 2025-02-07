@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div ng-include="'Components/Admin/Header/header.html'" ng-controller="headerCtrl"></div>
+    <section class="section-content">
+        <div class="container">
+          <header class="section-heading py-4">
+            <h3 class="section-title">Add Eposode</h3>
+          </header>
+          <main class="row mb-5"> 
+            <form name="formtaotapphim" ng-submit="title.includes('Add')?addEposode(eposode):editEposode(eposode)" class="col-lg-6" novalidate autocomplete="off">
+              <div ng-if="flagAlert_true" class="alert alert-success mb-3" role="alert">
+                  {{title.includes('Add')?"Add":"Update"}} eposode successfully
+              </div>
+              <div ng-if="flagAlert_false" class="alert alert-danger mb-3" role="alert">
+                    {{title.includes('Add')?"Add":"Update"}} eposode failed
+              </div>
+              <div ng-if="flagAlertNotExits_true" class="alert alert-danger mb-3" role="alert">
+                  No eposode found
+              </div>
+              <div class="mb-3">
+                <input type="hidden"
+                       class="form-control"
+                       id="eposode-idTapphim"
+                       name="idTapphim"
+                       ng-model="eposode.idTapphim">
+                <label for="eposode-name" class="form-label">Name episode <span class="text-danger">*</span></label>
+                <input type="text"
+                        class="form-control" ng-class="{'is-valid': formtaotapphim.tenTapphim.$valid, 'is-invalid': formtaotapphim.tenTapphim.$touched && formtaotapphim.tenTapphim.$invalid}"
+                        id="eposode-name"
+                        name="tenTapphim"
+                        ng-model="eposode.tenTapPhim"
+                        required>
+              </div>
+              <div class="mb-3">
+                <label for="eposode-luotxem" class="form-label">Views <span class="text-danger">*</span></label>
+                <input type="number"
+                       min="0" step="1"
+                       class="form-control"
+                       id="eposode-luotxem"
+                       name="luotXem"
+                       ng-class="{'is-valid': formtaotapphim.luotXem.$valid, 'is-invalid': formtaotapphim.luotXem.$touched && formtaotapphim.luotXem.$invalid}"
+                       ng-model="eposode.luotXem"
+                       required>
+              </div>
+              <div class="mb-3">
+                <label for="eposode-image" class="form-label">Image <span class="text-danger">*</span></label>
+                <input type="text"
+                       class="form-control"
+                       id="eposode-image"
+                       name="hinhTapphim"
+                       ng-class="{'is-valid': formtaotapphim.hinhTapphim.$valid, 'is-invalid': formtaotapphim.hinhTapphim.$touched && formtaotapphim.hinhTapphim.$invalid}"
+                       ng-model="eposode.hinhTapphim"
+                       required>
+              </div>
+              <div class="mb-3">
+                <label for="eposode-linkVideo" class="form-label">Link video <span class="text-danger">*</span></label>
+                <input type="text"
+                       ng-blur="changeVideo(eposode.linkVideo)"
+                       class="form-control"
+                       id="eposode-linkVideo"
+                       name="linkVideo"
+                       ng-class="{'is-valid': formtaotapphim.linkVideo.$valid, 'is-invalid': formtaotapphim.linkVideo.$touched && formtaotapphim.linkVideo.$invalid}"
+                       ng-model="eposode.linkVideo"
+                       required>
+              </div>
+              <div class="mb-3">
+                <input type="hidden"
+                        class="form-control"
+                        id="eposode-ngayTao"
+                        name="ngayTao"
+                        ng-model="eposode.ngayTao">
+              </div>
+              <button ng-if="title.includes('Add')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotapphim.$valid">
+                Add
+              </button>
+              <button ng-if="title.includes('Edit')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotapphim.$valid">
+                Update
+              </button>
+              <button type="button"
+                      class="btn btn-warning me-2 mb-3"
+                      ng-click="resetForm()">
+                Default
+              </button>
+            </form>
+            <div class="col-lg-6 row ">
+                <div class="col-lg-6"><img style="width: 100%;" ng-src="{{eposode.hinhTapphim}}" alt=""></div>
+                <div class="col-lg-6">
+                    <iframe width="100%" height="auto" ng-src="{{trustedUrl}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+          </main>
+        </div>
+      </section>
+    <div ng-include="'Components/Admin/Footer/footer.html'"></div>
+</body>
+</html>

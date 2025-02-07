@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="PhimHay" ng-controller="MainCtrl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="title"></title>
+    <div ng-if="!title.includes('Admin')">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="Asset/Style/style_user.css">
+    </div>
+    <div ng-if="title.includes('Admin')">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="Asset/Style/style_admin.css">
+    </div>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+</head>
+<body>
+    
+    <div class="container-lg container-fluid">
+		<!-- nội dung chính -->
+		<article class="mt-3">
+            <ng-view></ng-view>
+		</article>
+	
+	</div>
+ 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"defer></script>
+    <script src="Asset/Script/jquery.min.js"></script>
+    <div ng-if="!title.includes('Admin')">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </div>
+    <div ng-if="title.includes('Admin')">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" defer integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="Asset/Script/jquery.dataTables.min.js" defer></script>
+	    <script src="Asset/Script/dataTables.bootstrap4.min.js" defer></script>
+	    <script src="Asset/Script/dataTables.responsive.min.js" defer></script>
+	    <script src="Asset/Script/dataTables.bootstrap4.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    </div>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
+	<script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js" defer></script>
+    <script src="Asset/Script/main.js" defer></script>
+    <script src="Asset/Script/MainCtrl.js" defer></script>
+    <script src="Pages/Admin/Home/AdminCtrl.js" defer></script>
+    <script src="Pages/Admin/User/UserCtrl.js" defer></script>
+    <script src="Pages/Admin/Category/FormCategory/FormCategoryCtrl.js" defer></script>
+    <script src="Pages/Admin/Category/CategoryCtrl.js" defer></script>
+    <script src="Pages/Admin/Movie/MovieCtrl.js" defer></script>
+    <script src="Pages/Admin/Movie/Episode/EpisodeCtrl.js" defer></script>
+    <script src="Pages/Admin/Movie/Episode/FormEposode/FormEposodeCtrl.js" defer></script>
+    <script src="Pages/Admin/Movie/FormMovie/FormMovieCtrl.js" defer></script>
+    <script src="Pages/Movie/MovieClientCtrl.js" defer></script>
+    <script src="Pages/History/HistoryCtrl.js" defer></script>
+    <script src="Pages/Movie/WatchMovie/WatchMovieCtrl.js" defer></script>
+    <script src="Pages/Home/HomeCtrl.js" defer></script>
+    <script src="Pages/Search/SearchMovieCtrl.js" defer></script>
+    <script src="Components/Offcanvas/OffcanvasAvatarCtrl.js" defer></script>
+    <script src="Components/Header/header_userCtrl.js" defer></script>
+    <script src="Components/Admin/Header/headerCtrl.js" defer></script>
+    <script src="Pages/Admin/User/FormUser/FormUserCtrl.js" defer></script>
+    <script src="Asset/Script/route.js" defer></script>
+
+</body>
+</html>

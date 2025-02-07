@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div ng-include="'Components/Admin/Header/header.html'" ng-controller="headerCtrl"></div>
+    <section class="section-content">
+        <div class="container">
+          <header class="section-heading py-4">
+            <h3 class="section-title">Add Category</h3>
+          </header> <!-- section-heading.// -->
+          <main class="row mb-5"> 
+            <form name="formtaotheloai" ng-submit="title.includes('Add')?addCategory(category):editCategory(category)" class="col-lg-6" novalidate autocomplete="off">
+              <div ng-if="flagAlert_true" class="alert alert-success mb-3" role="alert">
+                  {{title.includes('Add')?"Add":"Update"}} category successfully
+              </div>
+              <div ng-if="flagAlert_false" class="alert alert-danger mb-3" role="alert">
+                This category name already exists
+              </div>
+              <div ng-if="flagAlertNotExits_true" class="alert alert-danger mb-3" role="alert">
+                No category code found
+              </div>
+              <div class="mb-3">
+                <input type="hidden"
+                        class="form-control"
+                        id="category-id"
+                        name="idLoai"
+                        ng-model="category.idLoai">
+              </div>
+              <div class="mb-3">
+                <label for="category-name" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text"
+                       class="form-control"
+                       id="category-name"
+                       name="tenLoai"
+                       ng-class="{'is-valid': formtaotheloai.tenLoai.$valid, 'is-invalid': formtaotheloai.tenLoai.$touched && formtaotheloai.tenLoai.$invalid}"
+                       ng-model="category.tenLoai"
+                       required>
+              </div>
+              <button ng-if="title.includes('Add')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotheloai.$valid">
+                Add
+              </button>
+              <button ng-if="title.includes('Edit')" type="submit" class="btn btn-primary me-2 mb-3" ng-disabled="!formtaotheloai.$valid">
+                Update
+              </button>
+              <button type="reset"
+                      class="btn btn-warning me-2 mb-3"
+                      ng-click="resetForm()">
+                Default
+              </button>
+            </form>
+          </main>
+        </div>
+      </section>
+    <div ng-include="'Components/Admin/Footer/footer.html'"></div>
+</body>
+</html>
